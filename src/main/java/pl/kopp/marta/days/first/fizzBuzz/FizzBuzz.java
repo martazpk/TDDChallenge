@@ -10,7 +10,7 @@ public class FizzBuzz {
         for (int i = 1; i <=range ; i++) {
             String element = "";
 
-            if(isDivisibleByThree(i)){
+            if(isDivisibleByThree(i) || hasThree(i)){
                 element = element + "Fizz";
             }
             if(isDivisibleByFive(i)){
@@ -22,6 +22,19 @@ public class FizzBuzz {
             result.add(element);
         }
         return result;
+    }
+
+    private boolean hasThree(int i) {
+        if(i > 9){
+            String numberAsString =  String.valueOf(i);
+            char[] chars = numberAsString.toCharArray();
+            for (char c: chars) {
+               if(c == '3') {
+                   return true;
+               }
+            }
+        }
+        return false;
     }
 
     private boolean isDivisibleByFive(int i) {
