@@ -35,4 +35,11 @@ class FizzBuzzTest {
         assertThat(result.get(elementPosition)).isEqualTo("Fizz");
     }
 
+    @Test
+    void shouldReturnBuzzWhenNumberIsDivisibleByFive() {
+        List<String> result = fizzBuzz.game(100);
+
+        assertThat(result.get(4)).isEqualTo("Buzz");
+
+    }
 }
