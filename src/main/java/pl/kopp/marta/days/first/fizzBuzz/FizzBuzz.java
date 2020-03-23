@@ -10,10 +10,10 @@ public class FizzBuzz {
         for (int i = 1; i <=range ; i++) {
             String element = "";
 
-            if(isDivisibleByThree(i) || hasThree(i)){
+            if(isDivisibleByThree(i) || hasNumber(i, '3')){
                 element = element + "Fizz";
             }
-            if(isDivisibleByFive(i)){
+            if(isDivisibleByFive(i)  || hasNumber(i, '5')){
                 element = element + "Buzz";
             }
             if(element.isEmpty()) {
@@ -24,12 +24,12 @@ public class FizzBuzz {
         return result;
     }
 
-    private boolean hasThree(int i) {
+    private boolean hasNumber(int i, char number) {
         if(i > 9){
             String numberAsString =  String.valueOf(i);
             char[] chars = numberAsString.toCharArray();
             for (char c: chars) {
-               if(c == '3') {
+               if(c == number) {
                    return true;
                }
             }
