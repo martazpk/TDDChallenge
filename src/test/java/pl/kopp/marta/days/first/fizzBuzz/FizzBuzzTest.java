@@ -2,6 +2,8 @@ package pl.kopp.marta.days.first.fizzBuzz;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ class FizzBuzzTest {
 
     @Test
     void shouldReturnOneForOnePieceList() {
-        List<String> numbers = fizzBuzz.game(1);
+        List<String> numbers = fizzBuzz.game(100);
 
         assertThat(numbers.get(0)).isEqualTo("1");
     }
@@ -26,16 +28,18 @@ class FizzBuzzTest {
     @Test
     void shouldAddTwoSequenceNumbersWhenRangeIsTwo() {
         FizzBuzz fizzBuzz = new FizzBuzz();
-        List<String> numbers = fizzBuzz.game(2);
+        List<String> numbers = fizzBuzz.game(100);
 
         assertThat(numbers.get(0)).isEqualTo("1");
         assertThat(numbers.get(1)).isEqualTo("2");
     }
 
-    @Test
-    void shouldReturnFizzWhenNumberIsDivisibleByThree() {
-        List<String> result = fizzBuzz.game(3);
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5, 8, 11, 98})
+    void shouldReturnFizzWhenNumberIsDivisibleByThree(int elementPosition) {
+        List<String> result = fizzBuzz.game(100);
 
-        assertThat(result.get(2)).isEqualTo("Fizz");
+        assertThat(result.get(elementPosition)).isEqualTo("Fizz");
     }
+
 }
