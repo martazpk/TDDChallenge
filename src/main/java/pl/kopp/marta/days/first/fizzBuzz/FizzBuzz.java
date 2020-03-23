@@ -5,12 +5,11 @@ import java.util.List;
 
 public class FizzBuzz {
 
-
     public List<String> game(int range) {
         List<String> result = new ArrayList<>();
         for (int i = 1; i <=range ; i++) {
             String element = "";
-            
+
             if(isDivisibleByThree(i)){
                 element = element + "Fizz";
             }
