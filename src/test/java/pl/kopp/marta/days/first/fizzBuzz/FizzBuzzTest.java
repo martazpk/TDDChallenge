@@ -19,14 +19,7 @@ class FizzBuzzTest {
     }
 
     @Test
-    void shouldReturnOneForOnePieceList() {
-        List<String> numbers = fizzBuzz.game(100);
-
-        assertThat(numbers.get(0)).isEqualTo("1");
-    }
-
-    @Test
-    void shouldAddTwoSequenceNumbersWhenRangeIsTwo() {
+    void shouldReturnTwoSequenceNumbers() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         List<String> numbers = fizzBuzz.game(100);
 
