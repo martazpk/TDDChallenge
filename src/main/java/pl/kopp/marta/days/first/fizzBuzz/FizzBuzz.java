@@ -9,7 +9,10 @@ public class FizzBuzz {
     public List<String> game(int range) {
         List<String> result = new ArrayList<>();
         for (int i = 1; i <=range ; i++) {
-            if(isDivisibleByThree(i)){
+            if(isDivisibleByThree(i) && isDivisibleByFive(i)){
+                result.add("FizzBuzz");
+            }
+            else if(isDivisibleByThree(i)){
                 result.add("Fizz");
             }
             else if(isDivisibleByFive(i)){

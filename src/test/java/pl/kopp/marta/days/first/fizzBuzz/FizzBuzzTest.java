@@ -20,11 +20,10 @@ class FizzBuzzTest {
 
     @Test
     void shouldReturnTwoSequenceNumbers() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-        List<String> numbers = fizzBuzz.game(100);
+        List<String> result = fizzBuzz.game(100);
 
-        assertThat(numbers.get(0)).isEqualTo("1");
-        assertThat(numbers.get(1)).isEqualTo("2");
+        assertThat(result.get(0)).isEqualTo("1");
+        assertThat(result.get(1)).isEqualTo("2");
     }
 
     @ParameterizedTest
@@ -41,6 +40,13 @@ class FizzBuzzTest {
         List<String> result = fizzBuzz.game(100);
 
         assertThat(result.get(elementPosition)).isEqualTo("Buzz");
+    }
 
+    @ParameterizedTest
+    @ValueSource(ints = {14, 29, 44, 89})
+    void shouldReturnFizzBuzzWhenNumberIsDivisibleByThreeAndFive(int elementPosition) {
+        List<String> result = fizzBuzz.game(100);
+
+        assertThat(result.get(elementPosition)).isEqualTo("FizzBuzz");
     }
 }
