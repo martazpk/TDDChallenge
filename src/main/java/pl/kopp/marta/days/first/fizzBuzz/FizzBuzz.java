@@ -24,7 +24,7 @@ public class FizzBuzz {
     }
 
     private boolean isDivisibleByFive(int i) {
-        return i==5;
+        return i % 5 == 0;
     }
 
     private boolean isDivisibleByThree(int i) {
