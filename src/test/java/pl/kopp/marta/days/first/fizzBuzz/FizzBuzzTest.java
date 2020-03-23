@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FizzBuzzTest {
@@ -51,10 +50,11 @@ class FizzBuzzTest {
         assertThat(result.get(elementPosition)).isEqualTo("FizzBuzz");
     }
 
-    @Test
-    void shouldReturnFizzWhenNumberHasThreeInIt() {
+    @ParameterizedTest
+    @ValueSource(ints = {30, 52, 62, 92})
+    void shouldReturnFizzWhenNumberHasThreeInIt(int elementPosition) {
         List<String> result = fizzBuzz.game(100);
 
-        assertThat(result.get(30)).isEqualTo("Fizz");
+        assertThat(result.get(elementPosition)).isEqualTo("Fizz");
     }
 }
