@@ -9,19 +9,18 @@ public class FizzBuzz {
     public List<String> game(int range) {
         List<String> result = new ArrayList<>();
         for (int i = 1; i <=range ; i++) {
-            if(isDivisibleByThree(i) && isDivisibleByFive(i)){
-                result.add("FizzBuzz");
+            String element = "";
+            
+            if(isDivisibleByThree(i)){
+                element = element + "Fizz";
             }
-            else if(isDivisibleByThree(i)){
-                result.add("Fizz");
+            if(isDivisibleByFive(i)){
+                element = element + "Buzz";
             }
-            else if(isDivisibleByFive(i)){
-                result.add("Buzz");
+            if(element.isEmpty()) {
+                element = String.valueOf(i);
             }
-            else {
-                String numberAsString = String.valueOf(i);
-                result.add(numberAsString);
-            }
+            result.add(element);
         }
         return result;
     }
