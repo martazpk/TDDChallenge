@@ -11,13 +11,20 @@ public class FizzBuzz {
         for (int i = 1; i <=range ; i++) {
             if(isDivisibleByThree(i)){
                 result.add("Fizz");
-            }else
-            {
+            }
+            else if(isDivisibleByFive(i)){
+                result.add("Buzz");
+            }
+            else {
                 String numberAsString = String.valueOf(i);
                 result.add(numberAsString);
             }
         }
         return result;
+    }
+
+    private boolean isDivisibleByFive(int i) {
+        return i==5;
     }
 
     private boolean isDivisibleByThree(int i) {
