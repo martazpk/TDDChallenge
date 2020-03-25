@@ -1,4 +1,4 @@
-package pl.kopp.marta.days.second.poker;
+package pl.kopp.marta.days.second.poker.model;
 
 public enum Rank {
     TWO,
