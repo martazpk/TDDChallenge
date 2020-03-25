@@ -13,4 +13,14 @@ class DeckTest {
 
         assertThat(deck.getCards()).hasSize(52);
     }
+
+    @Test
+    void shouldShuffleDeck() {
+        Deck deckInOrder = new Deck();
+        Deck shuffledDeck = new Deck();
+
+        shuffledDeck.shuffle();
+
+        assertThat(deckInOrder).isNotEqualTo(shuffledDeck);
+    }
 }
