@@ -25,6 +25,10 @@ public class Poker {
     public String check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
+        Optional<Card> fourOfTheKind = findFour(sort);
+        if(fourOfTheKind.isPresent()){
+            return String.format("Four of the kind: %s", fourOfTheKind.get().getRank());
+        }
         List<Card> fullHouse = findFullHouse(sort);
         if (fullHouse.size() == 2) {
             return String.format("Full House: %s over %s", fullHouse.get(0).getRank(), fullHouse.get(1).getRank());
@@ -53,6 +57,17 @@ public class Poker {
         }
         return "High Card: " + sort.get(4);
     }
+
+    private Optional<Card> findFour(List<Card> cards) {
+            Map<Rank, List<Card>> collect = cards.stream().collect(groupingBy(Card::getRank));
+            for (Rank rank : collect.keySet()) {
+                if (collect.get(rank).size() == 4) {
+                    return Optional.of(collect.get(rank).get(0));
+                }
+            }
+            return Optional.empty();
+        }
+
 
     private List findFullHouse(List<Card> sort) {
         List<Card> three = findThree(sort);

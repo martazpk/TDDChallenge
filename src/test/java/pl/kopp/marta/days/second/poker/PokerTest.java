@@ -118,4 +118,17 @@ class PokerTest {
 
         assertThat(check).isEqualTo("Full House: KING over FIVE");
     }
+    @Test
+    void shouldReturnFourOfTheKind() {
+        List<Card> cards = Arrays.asList(
+                new Card(Suit.DIAMOND, Rank.FIVE),
+                new Card(Suit.SPADE, Rank.KING),
+                new Card(Suit.DIAMOND, Rank.KING),
+                new Card(Suit.HEART, Rank.KING),
+                new Card(Suit.CLUB, Rank.KING));
+
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Four of the kind: KING");
+    }
 }
