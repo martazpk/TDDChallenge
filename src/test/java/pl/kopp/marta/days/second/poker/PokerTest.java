@@ -29,7 +29,7 @@ class PokerTest {
     @Test
     void shouldReturnTheHighestCard() {
         List<Card> cards = Arrays.asList(
-                new Card(Suit.CLUB, Rank.TWO),
+                new Card(Suit.DIAMOND, Rank.TWO),
                 new Card(Suit.CLUB, Rank.FOUR),
                 new Card(Suit.CLUB, Rank.FIVE),
                 new Card(Suit.CLUB, Rank.JACK),
@@ -99,11 +99,11 @@ class PokerTest {
                 new Card(Suit.DIAMOND, Rank.SIX),
                 new Card(Suit.DIAMOND, Rank.SEVEN),
                 new Card(Suit.DIAMOND, Rank.EIGHT),
-                new Card(Suit.DIAMOND, Rank.NINE));
+                new Card(Suit.DIAMOND, Rank.JACK));
 
         String check = poker.check(cards);
 
-        assertThat(check).isEqualTo("Flush: NINE");
+        assertThat(check).isEqualTo("Flush: JACK");
     }
     @Test
     void shouldReturnFullHouse() {
@@ -130,5 +130,19 @@ class PokerTest {
         String check = poker.check(cards);
 
         assertThat(check).isEqualTo("Four of the kind: KING");
+    }
+
+    @Test
+    void shouldReturnStraightFlush() {
+        List<Card> cards = Arrays.asList(
+                new Card(Suit.DIAMOND, Rank.SEVEN),
+                new Card(Suit.DIAMOND, Rank.EIGHT),
+                new Card(Suit.DIAMOND, Rank.NINE),
+                new Card(Suit.DIAMOND, Rank.TEN),
+                new Card(Suit.DIAMOND, Rank.JACK));
+
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Straight flush: JACK");
     }
 }
