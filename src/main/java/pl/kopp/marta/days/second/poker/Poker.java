@@ -25,6 +25,11 @@ public class Poker {
     public String check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
+        Optional<Card> theHighestInFlush = findFlush(sort);
+        if (theHighestInFlush.isPresent()) {
+            return "Flush: " + theHighestInFlush.get().getRank();
+        }
+
         Optional<Card> theHighestInStraight = findStraight(sort);
         if (theHighestInStraight.isPresent()) {
             return "Straight: " + theHighestInStraight.get().getRank();
@@ -44,8 +49,15 @@ public class Poker {
         return "High Card: " + sort.get(4);
     }
 
-    private Optional<Card> findStraight(List<Card> sort) {
+    private Optional<Card> findFlush(List<Card> sort) {
         if (hasTheSameSuit(sort) && hasConsecutiveRank(sort)) {
+            return Optional.of(sort.get(4));
+        }
+        return Optional.empty();
+    }
+
+    private Optional<Card> findStraight(List<Card> sort) {
+        if (hasConsecutiveRank(sort)) {
             return Optional.of(sort.get(4));
         }
         return Optional.empty();

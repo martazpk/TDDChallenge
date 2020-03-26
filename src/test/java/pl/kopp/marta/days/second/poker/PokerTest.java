@@ -81,14 +81,29 @@ class PokerTest {
     @Test
     void shouldReturnStraight() {
         List<Card> cards = Arrays.asList(
+                new Card(Suit.HEART, Rank.FIVE),
+                new Card(Suit.DIAMOND, Rank.SIX),
+                new Card(Suit.DIAMOND, Rank.SEVEN),
+                new Card(Suit.DIAMOND, Rank.EIGHT),
+                new Card(Suit.DIAMOND, Rank.NINE));
+
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Straight: NINE");
+    }
+
+    @Test
+    void shouldReturnFlush() {
+        List<Card> cards = Arrays.asList(
                 new Card(Suit.DIAMOND, Rank.FIVE),
                 new Card(Suit.DIAMOND, Rank.SIX),
                 new Card(Suit.DIAMOND, Rank.SEVEN),
                 new Card(Suit.DIAMOND, Rank.EIGHT),
                 new Card(Suit.DIAMOND, Rank.NINE));
+
         String check = poker.check(cards);
 
-        assertThat(check).isEqualTo("Straight: NINE");
+        assertThat(check).isEqualTo("Flush: NINE");
     }
 
 }
