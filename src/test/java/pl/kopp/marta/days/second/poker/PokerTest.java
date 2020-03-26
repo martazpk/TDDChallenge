@@ -64,4 +64,17 @@ class PokerTest {
 
         assertThat(check).isEqualTo("Two Pairs: TWO and FIVE");
     }
+
+    @Test
+    void shouldReturnThreeCardsWithTheSameRank() {
+        List<Card> cards = Arrays.asList(
+                new Card(Suit.DIAMOND, Rank.FIVE),
+                new Card(Suit.DIAMOND, Rank.NINE),
+                new Card(Suit.CLUB, Rank.FIVE),
+                new Card(Suit.HEART, Rank.FIVE),
+                new Card(Suit.CLUB, Rank.SEVEN));
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Three of a Kind: FIVE");
+    }
 }
