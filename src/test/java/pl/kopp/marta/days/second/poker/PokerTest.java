@@ -105,5 +105,17 @@ class PokerTest {
 
         assertThat(check).isEqualTo("Flush: NINE");
     }
+    @Test
+    void shouldReturnFullHouse() {
+        List<Card> cards = Arrays.asList(
+                new Card(Suit.DIAMOND, Rank.FIVE),
+                new Card(Suit.HEART, Rank.FIVE),
+                new Card(Suit.DIAMOND, Rank.KING),
+                new Card(Suit.HEART, Rank.KING),
+                new Card(Suit.CLUB, Rank.KING));
 
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Full House: king over five");
+    }
 }
