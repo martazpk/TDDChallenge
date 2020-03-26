@@ -116,6 +116,6 @@ class PokerTest {
 
         String check = poker.check(cards);
 
-        assertThat(check).isEqualTo("Full House: king over five");
+        assertThat(check).isEqualTo("Full House: KING over FIVE");
     }
 }

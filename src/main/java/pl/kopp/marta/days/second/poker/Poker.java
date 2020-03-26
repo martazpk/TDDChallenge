@@ -25,6 +25,11 @@ public class Poker {
     public String check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
+        List<Card> fullHouse = findFullHouse(sort);
+        if (fullHouse.size() == 2) {
+            return String.format("Full House: %s over %s", fullHouse.get(0).getRank(), fullHouse.get(1).getRank());
+        }
+
         Optional<Card> theHighestInFlush = findFlush(sort);
         if (theHighestInFlush.isPresent()) {
             return "Flush: " + theHighestInFlush.get().getRank();
@@ -49,6 +54,16 @@ public class Poker {
         return "High Card: " + sort.get(4);
     }
 
+    private List findFullHouse(List<Card> sort) {
+        List<Card> three = findThree(sort);
+        List<Card> otherRank = sort.stream().filter(c -> !(three.get(0).getRank().equals(c.getRank()))).collect(Collectors.toList());
+        if (otherRank.get(0).getRank().equals(otherRank.get(1).getRank())) {
+            three.add(otherRank.get(0));
+            return three;
+        }
+        return Collections.emptyList();
+    }
+
     private Optional<Card> findFlush(List<Card> sort) {
         if (hasTheSameSuit(sort) && hasConsecutiveRank(sort)) {
             return Optional.of(sort.get(4));
@@ -69,7 +84,7 @@ public class Poker {
         int third = sort.get(2).getRank().getValue();
         int fourth = sort.get(3).getRank().getValue();
         int fifth = sort.get(4).getRank().getValue();
-        return second == first+1 && third == second + 1 && fourth == third +1 && fifth == fourth + 1;
+        return second == first + 1 && third == second + 1 && fourth == third + 1 && fifth == fourth + 1;
     }
 
     private boolean hasTheSameSuit(List<Card> sort) {
