@@ -1,10 +1,7 @@
 package pl.kopp.marta.days.second.poker;
 
 
-import pl.kopp.marta.days.second.poker.model.Card;
-import pl.kopp.marta.days.second.poker.model.CardComparator;
-import pl.kopp.marta.days.second.poker.model.Deck;
-import pl.kopp.marta.days.second.poker.model.Rank;
+import pl.kopp.marta.days.second.poker.model.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,8 +25,13 @@ public class Poker {
     public String check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
+        Optional<Card> theHighestInStraight = findStraight(sort);
+        if (theHighestInStraight.isPresent()) {
+            return "Straight: " + theHighestInStraight.get().getRank();
+        }
+
         List<Card> three = findThree(sort);
-        if(three.size() ==1 ){
+        if (three.size() == 1) {
             return "Three of a Kind: " + three.get(0).getRank();
         }
         List<Card> pairs = findPairs(sort);
@@ -40,6 +42,28 @@ public class Poker {
             return "Pair: " + pairs.get(0).getRank();
         }
         return "High Card: " + sort.get(4);
+    }
+
+    private Optional<Card> findStraight(List<Card> sort) {
+        if (hasTheSameSuit(sort) && hasConsecutiveRank(sort)) {
+            return Optional.of(sort.get(4));
+        }
+        return Optional.empty();
+    }
+
+    private boolean hasConsecutiveRank(List<Card> sort) {
+        int first = sort.get(0).getRank().getValue();
+        int second = sort.get(1).getRank().getValue();
+        int third = sort.get(2).getRank().getValue();
+        int fourth = sort.get(3).getRank().getValue();
+        int fifth = sort.get(4).getRank().getValue();
+        return second == first+1 && third == second + 1 && fourth == third +1 && fifth == fourth + 1;
+    }
+
+    private boolean hasTheSameSuit(List<Card> sort) {
+        Suit firstSuit = sort.get(0).getSuit();
+        System.out.println("has the same suit " + sort.stream().allMatch(c -> c.getSuit().equals(firstSuit)));
+        return sort.stream().allMatch(c -> c.getSuit().equals(firstSuit));
     }
 
     private List<Card> findThree(List<Card> cards) {
