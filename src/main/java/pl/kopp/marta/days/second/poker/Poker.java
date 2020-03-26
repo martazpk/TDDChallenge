@@ -62,7 +62,6 @@ public class Poker {
 
     private boolean hasTheSameSuit(List<Card> sort) {
         Suit firstSuit = sort.get(0).getSuit();
-        System.out.println("has the same suit " + sort.stream().allMatch(c -> c.getSuit().equals(firstSuit)));
         return sort.stream().allMatch(c -> c.getSuit().equals(firstSuit));
     }
 
