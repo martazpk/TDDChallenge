@@ -33,9 +33,8 @@ public class Poker {
             return "Two Pairs: " + pairs.get(1).getRank() +" and " + pairs.get(0).getRank();
         }
 
-        Optional<Card> pairOptional = findPair(cards);
-        if (pairOptional.isPresent()) {
-            return "Pair: " + pairOptional.get().getRank();
+        if (pairs.size() == 1) {
+            return "Pair: " + pairs.get(0).getRank();
         }
         return "High Card: " + sort.get(4);
     }
@@ -50,18 +49,6 @@ public class Poker {
         }
         return cardsWithPairs;
     }
-
-
-    private Optional<Card> findPair(List<Card> cards) {
-        Map<Rank, List<Card>> collect = cards.stream().collect(groupingBy(Card::getRank));
-        for (Rank rank: collect.keySet()) {
-            if(collect.get(rank).size() > 1){
-                return Optional.of(collect.get(rank).get(0));
-            }
-        }
-        return Optional.empty();
-    }
-
 
     private List<Card> sort(List<Card> cards) {
         return cards.stream().sorted(new CardComparator()).collect(Collectors.toList());
