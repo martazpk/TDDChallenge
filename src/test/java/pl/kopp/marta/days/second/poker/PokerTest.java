@@ -51,4 +51,17 @@ class PokerTest {
 
         assertThat(check).isEqualTo("Pair: TWO");
     }
+
+    @Test
+    void shouldFindTwoPairsWithTheSameRank() {
+        List<Card> cards = Arrays.asList(
+                new Card(Suit.CLUB, Rank.TWO),
+                new Card(Suit.DIAMOND, Rank.TWO),
+                new Card(Suit.CLUB, Rank.FIVE),
+                new Card(Suit.HEART, Rank.FIVE),
+                new Card(Suit.CLUB, Rank.SEVEN));
+        String check = poker.check(cards);
+
+        assertThat(check).isEqualTo("Two Pairs: TWO and FIVE");
+    }
 }
