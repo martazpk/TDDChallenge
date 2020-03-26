@@ -24,13 +24,11 @@ public class Poker {
     }
 
     public String check(List<Card> cards){
-        List<Card> sortedCards = sort(cards);
-
+        sort(cards);
         return "High Card: " + cards.get(4);
     }
 
     private List<Card> sort(List<Card> cards) {
-
         return cards.stream().sorted(new CardComparator()).collect(Collectors.toList());
     }
 }

@@ -30,7 +30,7 @@ class PokerTest {
                 new Card(Suit.CLUB, Rank.JACK),
                 new Card(Suit.CLUB, Rank.SEVEN));
         String check = poker.check(cards);
-    assertThat(check).isEqualTo("High Card: CLUB SEVEN");
 
+        assertThat(check).isEqualTo("High Card: CLUB JACK");
     }
 }

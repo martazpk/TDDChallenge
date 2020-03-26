@@ -4,13 +4,13 @@ import java.util.Comparator;
 
 public class CardComparator implements Comparator<Card> {
     @Override
-    public int compare(Card o1, Card o2) {
-        if (o1.getSuit().getValue() < o2.getSuit().getValue()) {
+    public int compare(Card c1, Card c2) {
+        if (c1.getRank().getValue() < c2.getRank().getValue()) {
             return -1;
         }
-        if (o1.getSuit().getValue() > o2.getSuit().getValue()) {
+        if (c1.getRank().getValue() > c2.getRank().getValue()) {
             return 1;
         }
-        return Integer.compare(o1.getRank().getValue(), o2.getRank().getValue());
+        return Integer.compare(c1.getSuit().getValue(), c2.getSuit().getValue());
     }
 }
