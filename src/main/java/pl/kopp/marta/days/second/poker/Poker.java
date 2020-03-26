@@ -24,8 +24,8 @@ public class Poker {
     }
 
     public String check(List<Card> cards){
-        sort(cards);
-        return "High Card: " + cards.get(4);
+        List<Card> sort = sort(cards);
+        return "High Card: " + sort.get(4);
     }
 
     private List<Card> sort(List<Card> cards) {
