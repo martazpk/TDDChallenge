@@ -15,17 +15,21 @@ class Poker {
         Deck deck = createNewDeck();
         deck.shuffle();
 
-        List<Card> player1 = deck.getCards(5);
-        List<Card> player2 = deck.getCards(5);
+        List<Card> player1 = deck.pokerHand(5);
+        List<Card> player2 = deck.pokerHand(5);
 
         return getWin(player1, player2);
     }
 
     private String getWin(List<Card> player1, List<Card> player2) {
-        if(check(player1).getScore() > check(player2).getScore()){
-            return "White wins";
-        } else if (check(player1).getScore() < check(player2).getScore()){
-            return "Black wins";
+        PokerResultSummary whitePokerResultSummary = check(player1);
+        PokerResultSummary blackPokerResultSummary = check(player2);
+
+
+        if(whitePokerResultSummary.getResult().getScore() > blackPokerResultSummary.getResult().getScore()){
+            return "White wins. - with " + whitePokerResultSummary.toString();
+        } else if (whitePokerResultSummary.getResult().getScore() < blackPokerResultSummary.getResult().getScore()){
+            return "Black wins. - with " + blackPokerResultSummary.toString();
         } else {
             return compareTheHighestCards(player1, player2);
         }
@@ -36,9 +40,9 @@ class Poker {
         Card blackCard = getHighestCard(player2);
 
         if(whiteCard.getRank().getValue() > blackCard.getRank().getValue()){
-            return "White wins";
+            return "White wins. - with " + check(player1).toString();
         } else {
-            return "Black wins";
+            return "Black wins. - with " + check(player2).toString();
         }
     }
 
@@ -51,45 +55,45 @@ class Poker {
         return new Deck();
     }
 
-    PokerResult check(List<Card> cards) {
+    PokerResultSummary check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
         Optional<Card> straightFlush = findStraightFlush(sort);
         if (straightFlush.isPresent()) {
-            return PokerResult.STRAIGHT_FLUSH;
+            return new PokerResultSummary(PokerResult.STRAIGHT_FLUSH, straightFlush.get().toString());
         }
 
         Optional<Card> fourOfTheKind = findFour(sort);
         if (fourOfTheKind.isPresent()) {
-            return PokerResult.FOUR_OF_KIND;
+            return new PokerResultSummary(PokerResult.FOUR_OF_KIND, fourOfTheKind.toString());
         }
         List<Card> fullHouse = findFullHouse(sort);
         if (fullHouse.size() == 2) {
-            return PokerResult.FULL_HOUSE;
+            return new PokerResultSummary(PokerResult.FULL_HOUSE, fullHouse.get(1).getRank().toString() + " over " + fullHouse.get(0).getRank().toString());
         }
 
         Optional<Card> theHighestInFlush = findFlush(sort);
         if (theHighestInFlush.isPresent()) {
-            return PokerResult.FLUSH;
+            return new PokerResultSummary(PokerResult.FLUSH, theHighestInFlush.get().getRank().toString());
         }
 
         Optional<Card> theHighestInStraight = findStraight(sort);
         if (theHighestInStraight.isPresent()) {
-            return PokerResult.STRAIGHT;
+            return new PokerResultSummary(PokerResult.STRAIGHT, theHighestInStraight.get().getRank().toString());
         }
 
         List<Card> three = findThree(sort);
         if (three.size() == 1) {
-            return PokerResult.THREE_OF_KIND;
+            return new PokerResultSummary(PokerResult.THREE_OF_KIND, three.get(0).getRank().toString());
         }
         List<Card> pairs = findPairs(sort);
         if (pairs.size() > 1) {
-            return PokerResult.TWO_PAIRS;
+            return new PokerResultSummary(PokerResult.TWO_PAIRS, pairs.get(1).getRank().toString() + " over " + pairs.get(0).getRank().toString());
         }
         if (pairs.size() == 1) {
-            return PokerResult.PAIR;
+            return new PokerResultSummary(PokerResult.PAIR, pairs.get(0).getRank().toString());
         }
-        return PokerResult.HIGH_CARD;
+        return new PokerResultSummary(PokerResult.HIGH_CARD, sort.get(4).getRank().toString());
     }
 
     private Optional<Card> findStraightFlush(List<Card> sort) {

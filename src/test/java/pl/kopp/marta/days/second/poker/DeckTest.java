@@ -21,12 +21,12 @@ class DeckTest {
 
     @Test
     void shouldCreateDeck() {
-        assertThat(deck.getCards()).hasSize(52);
+        assertThat(deck.pokerHand()).hasSize(52);
     }
 
     @Test
     void checkIsCardsAreDistinct() {
-        List<Card> distinct = deck.getCards().stream().distinct().collect(Collectors.toList());
+        List<Card> distinct = deck.pokerHand().stream().distinct().collect(Collectors.toList());
 
         assertThat(distinct).hasSize(52);
     }
@@ -38,12 +38,12 @@ class DeckTest {
         shuffledDeck.shuffle();
 
         assertThat(deck).isNotEqualTo(shuffledDeck);
-        assertThat(shuffledDeck.getCards().size()).isEqualTo(52);
+        assertThat(shuffledDeck.pokerHand().size()).isEqualTo(52);
     }
 
     @Test
     void shouldGetFiveCardFromDeck() {
-        List<Card> cards = deck.getCards(5);
+        List<Card> cards = deck.pokerHand(5);
 
         assertThat(cards).hasSize(5);
     }

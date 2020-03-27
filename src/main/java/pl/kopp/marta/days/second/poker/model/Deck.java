@@ -17,23 +17,23 @@ public class Deck {
         }
     }
 
-    public List<Card> getCards() {
+    public List<Card> pokerHand() {
         return cards;
     }
 
-    public List<Card> getCards(int numberOfCards) {
+    public List<Card> pokerHand(int numberOfCards) {
         List<Card> gettingCards = new ArrayList<>();
         for (int i = 0; i < numberOfCards; i++) {
             Card pop = pop();
             gettingCards.add(pop);
-            this.getCards().remove(pop);
+            this.pokerHand().remove(pop);
         }
         return gettingCards;
     }
 
     private Card pop() {
-        Card card = this.getCards().get(this.getCards().size()-1);
-        this.getCards().remove(card);
+        Card card = this.pokerHand().get(this.pokerHand().size()-1);
+        this.pokerHand().remove(card);
         return card;
     }
 

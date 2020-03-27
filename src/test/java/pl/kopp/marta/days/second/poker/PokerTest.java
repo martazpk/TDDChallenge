@@ -9,7 +9,6 @@ import pl.kopp.marta.days.second.poker.model.Suit;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +28,7 @@ class PokerTest {
                 new Card(Suit.CLUB, Rank.FIVE),
                 new Card(Suit.CLUB, Rank.JACK),
                 new Card(Suit.CLUB, Rank.SEVEN));
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.HIGH_CARD);
     }
@@ -42,7 +41,7 @@ class PokerTest {
                 new Card(Suit.CLUB, Rank.FIVE),
                 new Card(Suit.CLUB, Rank.JACK),
                 new Card(Suit.CLUB, Rank.SEVEN));
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.PAIR);
     }
@@ -55,7 +54,7 @@ class PokerTest {
                 new Card(Suit.CLUB, Rank.FIVE),
                 new Card(Suit.HEART, Rank.FIVE),
                 new Card(Suit.CLUB, Rank.SEVEN));
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.TWO_PAIRS);
     }
@@ -68,7 +67,7 @@ class PokerTest {
                 new Card(Suit.CLUB, Rank.FIVE),
                 new Card(Suit.HEART, Rank.FIVE),
                 new Card(Suit.CLUB, Rank.SEVEN));
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.THREE_OF_KIND);
     }
@@ -82,7 +81,7 @@ class PokerTest {
                 new Card(Suit.DIAMOND, Rank.EIGHT),
                 new Card(Suit.DIAMOND, Rank.NINE));
 
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.STRAIGHT);
     }
@@ -96,7 +95,7 @@ class PokerTest {
                 new Card(Suit.DIAMOND, Rank.EIGHT),
                 new Card(Suit.DIAMOND, Rank.JACK));
 
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.FLUSH);
     }
@@ -109,7 +108,7 @@ class PokerTest {
                 new Card(Suit.HEART, Rank.KING),
                 new Card(Suit.CLUB, Rank.KING));
 
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.FULL_HOUSE);
     }
@@ -122,7 +121,7 @@ class PokerTest {
                 new Card(Suit.HEART, Rank.KING),
                 new Card(Suit.CLUB, Rank.KING));
 
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.FOUR_OF_KIND);
     }
@@ -136,7 +135,7 @@ class PokerTest {
                 new Card(Suit.DIAMOND, Rank.TEN),
                 new Card(Suit.DIAMOND, Rank.JACK));
 
-        PokerResult result = poker.check(cards);
+        PokerResult result = poker.check(cards).getResult();
 
         assertThat(result).isEqualTo(PokerResult.STRAIGHT_FLUSH);
     }
