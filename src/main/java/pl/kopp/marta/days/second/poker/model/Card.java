@@ -12,7 +12,6 @@ public class Card{
         this.rank = rank;
     }
 
-
     @Override
     public String toString() {
         return suit + " " + rank;

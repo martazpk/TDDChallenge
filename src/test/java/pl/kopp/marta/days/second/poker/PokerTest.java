@@ -9,6 +9,7 @@ import pl.kopp.marta.days.second.poker.model.Suit;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,13 +19,6 @@ class PokerTest {
     @BeforeEach
     void setUp() {
         poker = new Poker();
-    }
-
-    @Test
-    void shouldGetFiveCardFromDeck() {
-        List<Card> cards = poker.game();
-
-        assertThat(cards).hasSize(5);
     }
 
     @Test

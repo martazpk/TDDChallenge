@@ -3,7 +3,6 @@ package pl.kopp.marta.days.second.poker.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 public class Deck {
     private List<Card> cards;
@@ -24,14 +23,18 @@ public class Deck {
 
     public List<Card> getCards(int numberOfCards) {
         List<Card> gettingCards = new ArrayList<>();
-        for (int i = 1; i <= numberOfCards; i++) {
-            gettingCards.add(pop());
+        for (int i = 0; i < numberOfCards; i++) {
+            Card pop = pop();
+            gettingCards.add(pop);
+            this.getCards().remove(pop);
         }
         return gettingCards;
     }
 
-    public Card pop() {
-        return cards.get(cards.size() - 1);
+    private Card pop() {
+        Card card = this.getCards().get(this.getCards().size()-1);
+        this.getCards().remove(card);
+        return card;
     }
 
     public void shuffle() {
@@ -49,5 +52,8 @@ public class Deck {
 
         cards.add(i, card2);
         cards.add(j, card1);
+
+        cards.remove(card2);
+        cards.remove(card1);
     }
 }

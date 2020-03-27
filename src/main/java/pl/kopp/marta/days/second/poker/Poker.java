@@ -9,20 +9,49 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 
-public class Poker {
-    private Deck deck;
+class Poker {
 
-    public Poker() {
-        this.deck = new Deck();
+    String game() {
+        Deck deck = createNewDeck();
         deck.shuffle();
+
+        List<Card> player1 = deck.getCards(5);
+        List<Card> player2 = deck.getCards(5);
+
+        return getWin(player1, player2);
     }
 
-
-    public List<Card> game() {
-        return deck.getCards(5);
+    private String getWin(List<Card> player1, List<Card> player2) {
+        if(check(player1).getScore() > check(player2).getScore()){
+            return "White wins";
+        } else if (check(player1).getScore() < check(player2).getScore()){
+            return "Black wins";
+        } else {
+            return compareTheHighestCards(player1, player2);
+        }
     }
 
-    public PokerResult check(List<Card> cards) {
+    private String compareTheHighestCards(List<Card> player1, List<Card> player2) {
+        Card whiteCard = getHighestCard(player1);
+        Card blackCard = getHighestCard(player2);
+
+        if(whiteCard.getRank().getValue() > blackCard.getRank().getValue()){
+            return "White wins";
+        } else {
+            return "Black wins";
+        }
+    }
+
+    private Card getHighestCard(List<Card> cards) {
+        List<Card> sort = sort(cards);
+        return sort.get(4);
+    }
+
+    private Deck createNewDeck() {
+        return new Deck();
+    }
+
+    PokerResult check(List<Card> cards) {
         List<Card> sort = sort(cards);
 
         Optional<Card> straightFlush = findStraightFlush(sort);
@@ -84,7 +113,9 @@ public class Poker {
     private List<Card> findFullHouse(List<Card> sort) {
         List<Card> three = findThree(sort);
         if (!three.isEmpty()) {
-            List<Card> otherRank = sort.stream().filter(c -> !(three.get(0).getRank().equals(c.getRank()))).collect(Collectors.toList());
+            List<Card> otherRank = sort.stream()
+                    .filter(c -> !(three.get(0).getRank().equals(c.getRank())))
+                    .collect(Collectors.toList());
             if (otherRank.get(0).getRank().equals(otherRank.get(1).getRank())) {
                 three.add(otherRank.get(0));
                 return three;
@@ -108,10 +139,10 @@ public class Poker {
     }
 
     private boolean hasConsecutiveRank(List<Card> sortCards) {
-        for (int i = 0; i < sortCards.size() - 1 ; i++) {
+        for (int i = 0; i < sortCards.size() - 1; i++) {
             int rank = sortCards.get(i).getRank().getValue();
-            int nextRank = sortCards.get(i +1).getRank().getValue();
-            if(rank != nextRank - 1){
+            int nextRank = sortCards.get(i + 1).getRank().getValue();
+            if (rank != nextRank - 1) {
                 return false;
             }
         }
@@ -137,15 +168,14 @@ public class Poker {
     private List<Card> findPairs(List<Card> cards) {
         List<Card> cardsWithPairs = new ArrayList<>();
         Map<Rank, List<Card>> collect = cards.stream().collect(groupingBy(Card::getRank));
-        for (Rank rank : collect.keySet()) {
+        for (Rank rank : collect.keySet())
             if (collect.get(rank).size() > 1) {
                 cardsWithPairs.add(collect.get(rank).get(0));
             }
-        }
         return cardsWithPairs;
     }
 
-    private List<Card> sort(List<Card> cards) {
+    public List<Card> sort(List<Card> cards) {
         return cards.stream().sorted(new CardComparator()).collect(Collectors.toList());
     }
 }
