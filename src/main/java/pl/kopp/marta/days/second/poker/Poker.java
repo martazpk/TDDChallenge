@@ -90,7 +90,6 @@ public class Poker {
                 return three;
             }
         }
-
         return Collections.emptyList();
     }
 
@@ -108,13 +107,15 @@ public class Poker {
         return Optional.empty();
     }
 
-    private boolean hasConsecutiveRank(List<Card> sort) {
-        int first = sort.get(0).getRank().getValue();
-        int second = sort.get(1).getRank().getValue();
-        int third = sort.get(2).getRank().getValue();
-        int fourth = sort.get(3).getRank().getValue();
-        int fifth = sort.get(4).getRank().getValue();
-        return second == first + 1 && third == second + 1 && fourth == third + 1 && fifth == fourth + 1;
+    private boolean hasConsecutiveRank(List<Card> sortCards) {
+        for (int i = 0; i < sortCards.size() - 1 ; i++) {
+            int rank = sortCards.get(i).getRank().getValue();
+            int nextRank = sortCards.get(i +1).getRank().getValue();
+            if(rank != nextRank - 1){
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean hasTheSameSuit(List<Card> sort) {
