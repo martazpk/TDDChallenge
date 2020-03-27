@@ -65,35 +65,43 @@ class Poker {
 
         Optional<Card> fourOfTheKind = findFour(sort);
         if (fourOfTheKind.isPresent()) {
-            return new PokerResultSummary(PokerResult.FOUR_OF_KIND, fourOfTheKind.toString());
+            String details = fourOfTheKind.toString();
+            return new PokerResultSummary(PokerResult.FOUR_OF_KIND, details);
         }
         List<Card> fullHouse = findFullHouse(sort);
         if (fullHouse.size() == 2) {
-            return new PokerResultSummary(PokerResult.FULL_HOUSE, fullHouse.get(1).getRank().toString() + " over " + fullHouse.get(0).getRank().toString());
+            String details = fullHouse.get(1).getRank().toString() + " over " + fullHouse.get(0).getRank().toString();
+            return new PokerResultSummary(PokerResult.FULL_HOUSE, details);
         }
 
         Optional<Card> theHighestInFlush = findFlush(sort);
         if (theHighestInFlush.isPresent()) {
-            return new PokerResultSummary(PokerResult.FLUSH, theHighestInFlush.get().getRank().toString());
+            String details= theHighestInFlush.get().getRank().toString();
+            return new PokerResultSummary(PokerResult.FLUSH, details);
         }
 
         Optional<Card> theHighestInStraight = findStraight(sort);
         if (theHighestInStraight.isPresent()) {
-            return new PokerResultSummary(PokerResult.STRAIGHT, theHighestInStraight.get().getRank().toString());
+            String details = theHighestInStraight.get().getRank().toString();
+            return new PokerResultSummary(PokerResult.STRAIGHT, details);
         }
 
         List<Card> three = findThree(sort);
         if (three.size() == 1) {
-            return new PokerResultSummary(PokerResult.THREE_OF_KIND, three.get(0).getRank().toString());
+            String details = three.get(0).getRank().toString();
+            return new PokerResultSummary(PokerResult.THREE_OF_KIND, details);
         }
         List<Card> pairs = findPairs(sort);
         if (pairs.size() > 1) {
-            return new PokerResultSummary(PokerResult.TWO_PAIRS, pairs.get(1).getRank().toString() + " over " + pairs.get(0).getRank().toString());
+            String details = pairs.get(1).getRank().toString() + " over " + pairs.get(0).getRank().toString();
+            return new PokerResultSummary(PokerResult.TWO_PAIRS, details);
         }
         if (pairs.size() == 1) {
-            return new PokerResultSummary(PokerResult.PAIR, pairs.get(0).getRank().toString());
+            String details = pairs.get(0).getRank().toString();
+            return new PokerResultSummary(PokerResult.PAIR, details);
         }
-        return new PokerResultSummary(PokerResult.HIGH_CARD, sort.get(4).getRank().toString());
+        String theHighestCard = sort.get(4).getRank().toString();
+        return new PokerResultSummary(PokerResult.HIGH_CARD, theHighestCard);
     }
 
     private Optional<Card> findStraightFlush(List<Card> sort) {
