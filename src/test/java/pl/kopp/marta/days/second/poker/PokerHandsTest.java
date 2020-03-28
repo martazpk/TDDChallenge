@@ -6,6 +6,7 @@ import pl.kopp.marta.days.second.poker.model.Card;
 import pl.kopp.marta.days.second.poker.model.PokerResult;
 import pl.kopp.marta.days.second.poker.model.Rank;
 import pl.kopp.marta.days.second.poker.model.Suit;
+import pl.kopp.marta.days.second.poker.service.PokerHands;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.kopp.marta.days.second.poker;
+package pl.kopp.marta.days.second.poker.service;
 
 import pl.kopp.marta.days.second.poker.model.Card;
 import pl.kopp.marta.days.second.poker.model.CardComparator;

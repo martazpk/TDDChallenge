@@ -1,7 +1,8 @@
-package pl.kopp.marta.days.second.poker;
+package pl.kopp.marta.days.second.poker.service;
 
 
 import pl.kopp.marta.days.second.poker.model.*;
+import pl.kopp.marta.days.second.poker.service.Poker;
 
 import java.util.*;
 import java.util.stream.Collectors;
