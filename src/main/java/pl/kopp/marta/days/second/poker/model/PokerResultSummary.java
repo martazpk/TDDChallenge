@@ -14,7 +14,8 @@ public class PokerResultSummary {
 
     @Override
     public String toString() {
-        return  result + ": " +
+        String resultFormat = result.toString().toLowerCase().replace('_', ' ');
+        return  resultFormat + ": " +
                  description.toLowerCase()
                 ;
     }
