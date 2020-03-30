@@ -20,7 +20,7 @@ public class Game {
 
     public String game() {
         Deck deck = createNewDeck();
-        deck.shuffle();
+        deck.shuffle(50);
 
         List<Card> first = deck.getCards(5);
         List<Card> second = deck.getCards(5);

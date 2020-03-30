@@ -37,8 +37,8 @@ public class Deck {
         return card;
     }
 
-    public void shuffle() {
-        for (int i = 0; i < 50; i++) {
+    public void shuffle(int times) {
+        for (int i = 0; i < times; i++) {
             swapTwoCards();
         }
     }
@@ -47,6 +47,7 @@ public class Deck {
         Random random = new Random();
         int i = random.nextInt(cards.size());
         int j = random.nextInt(cards.size());
+
         Card card1 = cards.get(i);
         Card card2 = cards.get(j);
 

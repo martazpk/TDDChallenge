@@ -2,13 +2,10 @@ package pl.kopp.marta.days.second.poker.service;
 
 
 import pl.kopp.marta.days.second.poker.model.*;
-import pl.kopp.marta.days.second.poker.service.Poker;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
-
 
 public class PokerHands implements Poker {
 

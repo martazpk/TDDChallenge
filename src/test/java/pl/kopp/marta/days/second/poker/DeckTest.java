@@ -35,7 +35,7 @@ class DeckTest {
     void shouldShuffleDeck() {
         Deck shuffledDeck = new Deck();
 
-        shuffledDeck.shuffle();
+        shuffledDeck.shuffle(50);
 
         assertThat(deck).isNotEqualTo(shuffledDeck);
         assertThat(shuffledDeck.getCards().size()).isEqualTo(52);
