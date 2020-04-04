@@ -1,15 +1,21 @@
 package pl.kopp.marta.days.third.romannumerals;
 
 
-public class RomanNumerals {
+class RomanNumerals {
 
-    public String toRoman(int i) {
-        if(i == 1){
+    String toRoman(int i) {
+        if(i == 1) {
             return "I";
         }
-        if(i == 2){
+        if(i == 2) {
             return "II";
         }
-        else return "III";
+        if(i == 3){
+            return "III";
+        }
+        if(i == 5){
+            return "V";
+        }
+        else return "";
     }
 }

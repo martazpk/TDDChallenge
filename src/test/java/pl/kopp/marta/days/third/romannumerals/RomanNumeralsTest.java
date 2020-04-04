@@ -22,4 +22,11 @@ private RomanNumerals romanNumerals;
 
         assertThat(romanNumeral).isEqualTo(expected);
     }
+
+    @Test
+    void shouldReturnIVWhen4IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(5);
+
+        assertThat(romanNumeral).isEqualTo("V");
+    }
 }
