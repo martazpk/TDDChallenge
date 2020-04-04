@@ -14,4 +14,12 @@ class RomanNumeralsTest {
 
         assertThat(romanNumeral).isEqualTo("I");
     }
+
+    @Test
+    void shouldReturnIIWhenTwoIsGiven() {
+        RomanNumerals romanNumerals = new RomanNumerals();
+        String romanNumeral = romanNumerals.toRoman(2);
+
+        assertThat(romanNumeral).isEqualTo("II");
+    }
 }
