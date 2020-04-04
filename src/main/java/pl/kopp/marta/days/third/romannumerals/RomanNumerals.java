@@ -7,31 +7,21 @@ import java.util.stream.Collectors;
 
 class RomanNumerals {
 
-    String toRoman(int i) {
+    String toRoman(int number) {
         List<RomanNumeral> numerals = Arrays.stream(RomanNumeral.values()).collect(Collectors.toList());
-
         String result = "";
-        for (RomanNumeral r: numerals) {
-            if(i == r.getValue()) {
-                return result.concat(r.toString());
-            }
-        }
-        if (i <= 3) {
-            result = addOne(i, result);
 
-        } else if (i < 9) {
-            result = result.concat(RomanNumeral.V.toString());
-            result = addOne(i - 5, result);
-        } else {
-            result = result.concat(RomanNumeral.X.toString());
-            result = addOne(i - 10, result);
-        }
-        return result;
-    }
+        int i = numerals.size()-1;
 
-    private String addOne(int i, String result) {
-        for (int j = 1; j <= i; j++) {
-            result = result.concat(RomanNumeral.I.toString());
+        while (number > 0 && i>= 0 ) {
+                RomanNumeral current = numerals.get(i);
+                if (current.getValue() <= number) {
+                    result = result.concat(current.toString());
+                    number -= current.getValue();
+                }
+                else {
+                    i--;
+                }
         }
         return result;
     }
