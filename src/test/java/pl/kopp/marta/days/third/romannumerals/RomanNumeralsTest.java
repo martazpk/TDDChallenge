@@ -36,10 +36,11 @@ private RomanNumerals romanNumerals;
         assertThat(romanNumeral).isEqualTo("V");
     }
 
-    @Test
-    void shouldReturnVIWhen6IsGiven() {
-        String romanNumeral = romanNumerals.toRoman(6);
+    @ParameterizedTest
+    @CsvSource({"6,VI", "7,VII", "8,VIII"})
+    void shouldReturnVIWhen6IsGiven(int input, String expected) {
+        String romanNumeral = romanNumerals.toRoman(input);
 
-        assertThat(romanNumeral).isEqualTo("VI");
+        assertThat(romanNumeral).isEqualTo(expected);
     }
 }
