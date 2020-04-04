@@ -10,6 +10,8 @@ public enum RomanNumeral {
     IX(9),
     X(10),
     XL(40),
+    XC(90),
+    C(100),
     L(50);
 
     private int value;

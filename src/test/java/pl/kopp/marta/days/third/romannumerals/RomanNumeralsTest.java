@@ -31,7 +31,9 @@ class RomanNumeralsTest {
             "12,XII",
             "13,XIII",
             "40,XL",
-            "50,L"
+            "50,L",
+            "90,XC",
+            "100,C"
     })
     void shouldReturnCorrectRomanNumeralIWhenNumberIsGiven(int input, String expected) {
         String romanNumeral = romanNumerals.toRoman(input);
