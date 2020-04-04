@@ -4,9 +4,15 @@ import lombok.Getter;
 
 @Getter
 public enum RomanNumeral {
-    I,
-    IV,
-    V,
-    IX,
-    X
+    I(1),
+    IV(4),
+    V(5),
+    IX(9),
+    X(10);
+
+    private int value;
+
+    RomanNumeral(int value) {
+        this.value = value;
+    }
 }

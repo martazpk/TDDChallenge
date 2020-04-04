@@ -1,32 +1,30 @@
 package pl.kopp.marta.days.third.romannumerals;
 
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 class RomanNumerals {
-    private static final String ONE = "I";
-    private static final String FIVE = "V";
-    private static final String FOUR = "IV";
-    private static final String NINE = "IX";
-    private static final String TEN = "X";
+
 
     String toRoman(int i) {
-        String result = "";
+        List<RomanNumeral> numerals = Arrays.stream(RomanNumeral.values()).collect(Collectors.toList());
 
+        String result = "";
+        for (RomanNumeral r: numerals) {
+            if(i == r.getValue()) {
+                return result.concat(r.toString());
+            }
+        }
         if (i <= 3) {
             result = addOne(i, result);
-        } else if (i == 4) {
-            result = result.concat(FOUR);
 
-        } else if (i == 5) {
-            result = result.concat(FIVE);
         } else if (i < 9) {
-            result = result.concat(FIVE);
+            result = result.concat(RomanNumeral.V.toString());
             result = addOne(i - 5, result);
-        } else if (i < 10) {
-            result = result.concat(NINE);
-        } else if (i == 10) {
-            result = result.concat(TEN);
         } else {
-            result = result.concat(TEN);
+            result = result.concat(RomanNumeral.X.toString());
             result = addOne(i - 10, result);
         }
         return result;
@@ -34,7 +32,7 @@ class RomanNumerals {
 
     private String addOne(int i, String result) {
         for (int j = 1; j <= i; j++) {
-            result = result.concat(ONE);
+            result = result.concat(RomanNumeral.I.toString());
         }
         return result;
     }
