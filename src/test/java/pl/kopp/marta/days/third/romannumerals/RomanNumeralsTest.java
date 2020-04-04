@@ -1,25 +1,25 @@
 package pl.kopp.marta.days.third.romannumerals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 class RomanNumeralsTest {
+private RomanNumerals romanNumerals;
 
-    @Test
-    void shouldReturnIWhenOneAsIntIsGiven() {
-        RomanNumerals romanNumerals = new RomanNumerals();
-        String romanNumeral = romanNumerals.toRoman(1);
-
-        assertThat(romanNumeral).isEqualTo("I");
+    @BeforeEach
+    void setUp() {
+        romanNumerals = new RomanNumerals();
     }
 
-    @Test
-    void shouldReturnIIWhenTwoIsGiven() {
-        RomanNumerals romanNumerals = new RomanNumerals();
-        String romanNumeral = romanNumerals.toRoman(2);
+    @ParameterizedTest
+    @CsvSource({"1,I", "2,II"})
+    void shouldReturnMultipleOfIWhenNumberIsGiven(int input, String expected) {
+        String romanNumeral = romanNumerals.toRoman(input);
 
-        assertThat(romanNumeral).isEqualTo("II");
+        assertThat(romanNumeral).isEqualTo(expected);
     }
 }
