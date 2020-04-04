@@ -14,7 +14,12 @@ class RomanNumerals {
         } else if (i == 4) {
             result = result.concat(FOUR);
 
-        } else result = result.concat(FIVE);
+        } else if (i ==5){
+            result = result.concat(FIVE);
+        } else {
+            result = result.concat(FIVE);
+            result = addOne(i-5, result);
+        }
         return result;
     }
 

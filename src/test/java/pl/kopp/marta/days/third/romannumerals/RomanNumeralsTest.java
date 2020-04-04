@@ -22,6 +22,12 @@ private RomanNumerals romanNumerals;
 
         assertThat(romanNumeral).isEqualTo(expected);
     }
+    @Test
+    void shouldReturnIVWhen4IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(4);
+
+        assertThat(romanNumeral).isEqualTo("IV");
+    }
 
     @Test
     void shouldReturnVWhen5IsGiven() {
@@ -31,10 +37,9 @@ private RomanNumerals romanNumerals;
     }
 
     @Test
-    void shouldReturnIVWhen4IsGiven() {
-        String romanNumeral = romanNumerals.toRoman(4);
+    void shouldReturnVIWhen6IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(6);
 
-        assertThat(romanNumeral).isEqualTo("IV");
-
+        assertThat(romanNumeral).isEqualTo("VI");
     }
 }
