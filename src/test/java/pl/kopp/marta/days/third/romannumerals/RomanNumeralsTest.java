@@ -43,4 +43,11 @@ private RomanNumerals romanNumerals;
 
         assertThat(romanNumeral).isEqualTo(expected);
     }
+
+    @Test
+    void shouldReturnIXWhen9IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(95);
+
+        assertThat(romanNumeral).isEqualTo("IX");
+    }
 }
