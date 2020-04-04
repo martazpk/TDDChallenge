@@ -24,9 +24,17 @@ private RomanNumerals romanNumerals;
     }
 
     @Test
-    void shouldReturnIVWhen4IsGiven() {
+    void shouldReturnVWhen5IsGiven() {
         String romanNumeral = romanNumerals.toRoman(5);
 
         assertThat(romanNumeral).isEqualTo("V");
+    }
+
+    @Test
+    void shouldReturnIVWhen4IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(4);
+
+        assertThat(romanNumeral).isEqualTo("IV");
+
     }
 }
