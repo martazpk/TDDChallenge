@@ -1,11 +1,12 @@
 package pl.kopp.marta.days.third.romannumerals;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RomanNumeralsTest {
     private RomanNumerals romanNumerals;
@@ -43,5 +44,12 @@ class RomanNumeralsTest {
         String romanNumeral = romanNumerals.toRoman(input);
 
         assertThat(romanNumeral).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 3001})
+    void shouldThrowExceptionWhenNumberIsOutOfBound(int input) {
+
+        assertThrows(IllegalArgumentException.class, () -> romanNumerals.toRoman(input));
     }
 }

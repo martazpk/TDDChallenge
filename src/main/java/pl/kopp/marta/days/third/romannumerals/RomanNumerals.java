@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 class RomanNumerals {
 
     String toRoman(int number) {
+        if(numberIsOutOfBound(number)){
+            throw new IllegalArgumentException(number + " is out of bound (0, 3000>");
+        }
+
         List<RomanNumeral> numerals = Arrays.stream(RomanNumeral.values()).collect(Collectors.toList());
         String result = "";
         int index = numerals.size()-1;
@@ -23,5 +27,9 @@ class RomanNumerals {
                 }
         }
         return result;
+    }
+
+    private boolean numberIsOutOfBound(int number) {
+      return   number < 1 || number > 3000;
     }
 }
