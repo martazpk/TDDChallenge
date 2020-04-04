@@ -16,7 +16,7 @@ private RomanNumerals romanNumerals;
     }
 
     @ParameterizedTest
-    @CsvSource({"1,I", "2,II"})
+    @CsvSource({"1,I", "2,II", "3,III"})
     void shouldReturnMultipleOfIWhenNumberIsGiven(int input, String expected) {
         String romanNumeral = romanNumerals.toRoman(input);
 
