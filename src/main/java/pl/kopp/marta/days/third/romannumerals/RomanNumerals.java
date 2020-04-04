@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 class RomanNumerals {
 
-
     String toRoman(int i) {
         List<RomanNumeral> numerals = Arrays.stream(RomanNumeral.values()).collect(Collectors.toList());
 
