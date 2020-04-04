@@ -6,6 +6,7 @@ class RomanNumerals {
     private static final String FIVE = "V";
     private static final String FOUR = "IV";
     private static final String NINE = "IX";
+    private static final String TEN = "X";
 
     String toRoman(int i) {
         String result = "";
@@ -15,13 +16,19 @@ class RomanNumerals {
         } else if (i == 4) {
             result = result.concat(FOUR);
 
-        } else if (i ==5){
+        } else if (i == 5) {
             result = result.concat(FIVE);
-        } else if(i < 9){
+        } else if (i < 9) {
             result = result.concat(FIVE);
-            result = addOne(i-5, result);
+            result = addOne(i - 5, result);
+        } else if (i < 10) {
+            result = result.concat(NINE);
+        } else if (i == 10) {
+            result = result.concat(TEN);
+        } else {
+            result = result.concat(TEN);
+            result = addOne(i - 10, result);
         }
-        else result = result.concat(NINE);
         return result;
     }
 
@@ -31,5 +38,4 @@ class RomanNumerals {
         }
         return result;
     }
-
 }

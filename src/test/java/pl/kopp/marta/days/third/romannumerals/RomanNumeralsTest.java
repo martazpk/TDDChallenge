@@ -46,8 +46,23 @@ private RomanNumerals romanNumerals;
 
     @Test
     void shouldReturnIXWhen9IsGiven() {
-        String romanNumeral = romanNumerals.toRoman(95);
+        String romanNumeral = romanNumerals.toRoman(9);
 
         assertThat(romanNumeral).isEqualTo("IX");
+    }
+
+    @Test
+    void shouldReturnXWhen10IsGiven() {
+        String romanNumeral = romanNumerals.toRoman(10);
+
+        assertThat(romanNumeral).isEqualTo("X");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"11,XI", "12,XII", "13,XIII"})
+    void shouldReturnCorrectLiteralWhen11To13IsGiven(int input, String expected) {
+        String romanNumeral = romanNumerals.toRoman(input);
+
+        assertThat(romanNumeral).isEqualTo(expected);
     }
 }
